@@ -2364,5 +2364,7 @@ class DWIN_LCD:
 			self.lcd.Buzzer(40)
 			time.sleep(0.05)
 			self.lcd.Buzzer(40)
+			print('beep beep')
 		else:
 			self.lcd.Buzzer(200)  # 200 ms
+			print('beeeeeeep')

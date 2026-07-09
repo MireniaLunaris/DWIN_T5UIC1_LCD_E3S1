@@ -88,7 +88,11 @@ class T5UIC1_LCD:
 		# 	self.Byte(i)
 		# self.bus.write_i2c_block_data(self.address, 0, self.DWIN_SendBuf)
 		# self.bus.write_i2c_block_data(self.address, 0, self.DWIN_BufTail)
-
+        
+        # FOR DEBUGGING:
+		# tx = bytes(self.DWIN_SendBuf) + bytes(self.DWIN_BufTail)
+		# print("TX:", " ".join(f"{b:02X}" for b in tx))
+	
 		self.MYSERIAL1.write(self.DWIN_SendBuf)
 		self.MYSERIAL1.write(self.DWIN_BufTail)
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 from dwinlcd import DWIN_LCD
 
 encoder_Pins = (19, 26)
