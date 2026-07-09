@@ -1,7 +1,24 @@
 # Class to monitor a rotary encoder and update a value.  You can either read the value when you need it, by calling getValue(), or
 # you can configure a callback which will be called whenever the value changes.
 
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except ImportError:
+    class _GPIOStub:
+        IN = None
+        PUD_UP = None
+        BOTH = None
+
+        def setup(self, *args, **kwargs):
+            pass
+
+        def add_event_detect(self, *args, **kwargs):
+            pass
+
+        def input(self, *args, **kwargs):
+            return 0
+
+    GPIO = _GPIOStub()
 
 class Encoder:
 
