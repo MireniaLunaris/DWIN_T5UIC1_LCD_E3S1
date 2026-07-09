@@ -128,7 +128,7 @@ class T5UIC1_LCD:
 	#  luminance: (0x00-0xFF)
 	def Backlight_SetLuminance(self, luminance):
 		self.Byte(0x30)
-		self.Byte(_MAX(luminance, 0x1F))
+		self.Byte(max(luminance, 0x1F))
 		self.Send()
 
 	# Set screen display direction
@@ -469,6 +469,17 @@ class T5UIC1_LCD:
 			self.Byte(0x06)  # The pixel size of the QR code exceeds the default of 1
 		self.String(data)
 		self.Send()
+
+	# /*---------------------------------------- Buzzer function ----------------------------------------*/
+	def Buzzer(self, duration_ms):
+    	# DWIN command 0x79, unit = 10 ms, range 0x01-0xEF
+		ticks = int(duration_ms / 10)
+		ticks = max(1, min(0xEF, ticks))
+
+		self.Byte(0x79)
+		self.Byte(ticks)
+		self.Send()
+
 	# /*---------------------------------------- Memory functions ----------------------------------------*/
 	#  The LCD has an additional 32KB SRAM and 16KB Flash
 

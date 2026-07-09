@@ -81,12 +81,6 @@ class HMI_Flag_t:
 	jerk_axis = AxisEnum()
 	step_axis = AxisEnum()
 
-
-class buzz_t:
-	def tone(self, t, n):
-		pass
-
-
 class material_preset_t:
 	def __init__(self, name, hotend_temp, bed_temp, fan_speed=100):
 		self.name = name
@@ -158,7 +152,7 @@ class KlippySocket:
 			return
 		try:
 			m = json.loads(line)
-		except JSONDecodeError:
+		except json.JSONDecodeError:
 			print("ERROR: Unable to parse line\n")
 			return
 		cm = json.dumps(m, separators=(',', ':'))
@@ -221,8 +215,6 @@ class PrinterData:
 
 	Z_PROBE_OFFSET_RANGE_MIN = -20
 	Z_PROBE_OFFSET_RANGE_MAX = 20
-
-	buzzer = buzz_t()
 
 	BABY_Z_VAR = 0
 	feedrate_percentage = 100
@@ -341,7 +333,7 @@ class PrinterData:
 		d = r.content.decode('utf-8')
 		try:
 			return json.loads(d)
-		except JSONDecodeError:
+		except json.JSONDecodeError:
 			print('Decoding JSON has failed')
 		return None
 

@@ -10,13 +10,13 @@ from RPi import GPIO
 from printerInterface import PrinterData
 from DWIN_Screen import T5UIC1_LCD
 
-PrinterStatusURL = "http://REPLACEYOURURL:7125/machine/device_power/status?Printer"
-PrinterOnURL = "http://REPLACEYOURURL:7125/machine/device_power/on?Printer"
-PrinterOffURL = "http://REPLACEYOURURL:7125/machine/device_power/off?Printer"
+PrinterStatusURL = "http://127.0.0.1:7125/machine/device_power/status?skr"
+PrinterOnURL = "http://127.0.0.1:7125/machine/device_power/on?skr"
+PrinterOffURL = "http://127.0.0.1:7125/machine/device_power/off?skr"
 
-LightStatusURL = "http://REPLACEYOURURL:7125/machine/device_power/status?Lights"
-LightOnURL = "http://REPLACEYOURURL:7125/machine/device_power/on?Lights"
-LightOffURL = "http://REPLACEYOURURL:7125/machine/device_power/off?Lights"
+LightStatusURL = "http://127.0.0.1:7125/machine/device_power/status?Lights"
+LightOnURL = "http://127.0.0.1:7125/machine/device_power/on?Lights"
+LightOffURL = "http://127.0.0.1:7125/machine/device_power/off?Lights"
 
 def current_milli_time():
 	return round(time.time() * 1000)
@@ -2361,8 +2361,8 @@ class DWIN_LCD:
 
 	def HMI_AudioFeedback(self, success=True):
 		if (success):
-			self.pd.buzzer.tone(100, 659)
-			self.pd.buzzer.tone(10, 0)
-			self.pd.buzzer.tone(100, 698)
+			self.lcd.Buzzer(40)
+			time.sleep(0.05)
+			self.lcd.Buzzer(40)
 		else:
-			self.pd.buzzer.tone(40, 440)
+			self.lcd.Buzzer(200)  # 200 ms

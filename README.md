@@ -231,6 +231,10 @@ Your LCD should start after 30 seconds. And when you restart your printer firmwa
  
     * Shows printer info.
 
+  Buzzer
+
+    * Is now buzzing
+
 ## Notworking:
     * Save / Loding Preheat setting, hardcode on start can be changed in menu but will not retane on restart.
     * The Control: Motion Menu
